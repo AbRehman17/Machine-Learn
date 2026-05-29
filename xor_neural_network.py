@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 # ================================================================
 # XOR TRUTH TABLE
 # ================================================================
@@ -18,11 +19,11 @@ loss_history = []
 # KEEP TRYING UNTIL NETWORK LEARNS
 # ================================================================
 for attempt in range(10):
-    
+
     # reinitialize weights every attempt
-    layer1 = np.random.randn(2, 2)
-    b1 = np.zeros((1, 2))
-    layer2 = np.random.randn(2, 1)
+    layer1 = np.random.randn(2, 10)
+    b1 = np.zeros((1, 10))
+    layer2 = np.random.randn(10, 1)
     b2 = np.zeros((1, 1))
 
     learning_rate = 1
@@ -58,7 +59,7 @@ for attempt in range(10):
         b1 = b1 - learning_rate * db1
     # check if network learned
     print(f"\nAttempt {attempt+1} | Final Loss: {loss:.6f}")
-    
+
     if loss < 0.01:
         print("NETWORK LEARNED! ")
         break
@@ -68,7 +69,7 @@ for attempt in range(10):
 # FINAL PREDICTIONS
 print("\nFinal Predictions vs True Values:")
 for i in range(len(x)):
-    print(f"Input: {x[i]} | Predicted: {output[i][0]:.4f} | True: {y[i][0]}")
+    print(f"Input: {x[i]} | Predicted: {output[i][0]:.4f} | True: {y[i][0]} \n\n")
 plt.plot(loss_history)
 plt.title('Loss over epochs')
 plt.xlabel('Epoch')
